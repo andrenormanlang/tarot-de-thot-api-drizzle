@@ -175,7 +175,7 @@ Exemplo do corpo da solicitação:
         "nome": "O Louco",
         "número_significado": "0 como nada e começo de tudo",
         "descrição_curta": "O Louco geralmente é retratado como um mendigo ou um vagabundo, usa roupas e meias irregulares sem sapatos, e carrega um graveto nas costas. Ele simboliza a verdadeira inocência, um estado perfeito de alegria e liberdade, o sentimento seguro de ser um com o espírito da vida a qualquer momento.",
-        "url_da_imagem": "https://res.cloudinary.com/dytiufsuu/image/upload/v1724869722/thot_tarot/00-The_Fool_fkip0b.jpg",
+        "URL da imagem": "https://res.cloudinary.com/dytiufsuu/image/upload/v1724869722/thot_tarot/00-The_Fool_fkip0b.jpg",
          "elemento": "Ar",
         "significados_positivos": [
             "o rompimento positivo de estruturas e limitações",

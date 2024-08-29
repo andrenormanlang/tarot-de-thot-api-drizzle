@@ -6,7 +6,7 @@ export const cartasTarot = pgTable('tarot_de_thot', {
   número_significado: text('número_significado').notNull(),  
   descrição_curta: text('descrição_curta').notNull(),  
   descrição_longa: text('descrição_longa'),  
-  URL_da_imagem: text('URL_da_imagem'), 
+  url_da_imagem: text('url_da_imagem'), 
   planeta_governante: text('planeta_governante'), 
   zodíaco: text('zodíaco'),  
   árvore_da_vida: text('árvore_da_vida'),  
