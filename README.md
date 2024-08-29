@@ -1,203 +1,222 @@
-# Thot Tarot API 🔮
+# API Thot Tarot 🔮
 
-This project is a RESTful API for managing a Thot Tarot card database. It's built with TypeScript, Express.js, and Drizzle ORM, connecting to a PostgreSQL database. 🚀
+Este projeto é uma API RESTful para gerenciar um banco de dados de cartas Thot Tarot. Ele é construído com TypeScript, Express.js e Drizzle ORM, conectando-se a um banco de dados PostgreSQL. 🚀
 
-## Features ✨
+## Recursos ✨
 
-- Fetch all tarot cards 📚
-- Fetch a single tarot card by ID 🃏
-- Add a new tarot card ➕
-- Bulk insert multiple tarot cards 📥
-- Update tarot card details ✏️
-- Delete a tarot card 🗑️
+- Buscar todas as cartas do Tarot de Thot 📚
+- Buscar uma única carta de Tarot de Thot por ID 🃏
+- Adicionar uma nova carta de Tarot de Thot ➕
+- Inserir várias cartas do Tarot de Thot de uma vez 📥
+- Atualizar detalhes de uma carta de tarot ✏️
+- Excluir uma carta de tarot 🗑️
 
-## Prerequisites 📋
+## Pré-requisitos 📋
 
-- Node.js (v14 or later) 💻
-- npm (v6 or later) 📦
-- PostgreSQL database 🐘
+- Node.js (v14 ou posterior) 💻
+- npm (v6 ou posterior) 📦
+- Banco de dados PostgreSQL 🐘
 
-## Setup 🛠️
+## Configuração 🛠️
 
-1. Clone the repository:
+1. Clone o repositório:
 
-   ```bash
+```bash
    git clone https://github.com/andrenormanlang/thot-tarot-api.git
    cd thot-tarot-api
    ```
 
-2. Install dependencies:
+2. Instale as dependências:
 
-   ```bash
+```bash
    npm install
    ```
 
-3. Set up your environment variables:
-   Create a `.env` file in the root directory and add your database connection string:
+3. Configure suas variáveis :
+Crie um arquivo `.env` no diretório raiz e adicione sua string de conexão de banco de dados:
 
-   ```bash
+```bash
    DATABASE_URL=postgres://username:password@localhost:5432/your_database
-   ```
+```
 
-4. Run database migrations:
+4. Execute as migrações do banco de dados:
 
-   ```bash
+```bash
    npm run generate
    npm run migrate
    ```
 
-5. Start the server:
+5. Inicie o servidor:
 
-   ```bash
+```bash
    npm run dev
    ```
 
-The server should now be running on `http://localhost:3000`. 🎉
+O servidor agora deve estar em funcionando em `http://localhost:3000`. 🎉
 
-## Database Schema 📊
+## Esquema do Banco de Dados 📊
 
-The `thot_tarot` table has the following structure:
+A tabela `tarot_de_thot` tem a seguinte estrutura:
 
-- `id`: Serial (Primary Key)
-- `image_url`: VARCHAR(500)
-- `name`: VARCHAR(255)
-- `description`: VARCHAR(1000)
-- `long_description`: VARCHAR(1000)
-- `astrology`: JSONB
-- `element`: VARCHAR(50)
-- `number`: Serial
-- `meanings`: JSONB
-- `advice`: VARCHAR(500)
-- `question`: VARCHAR(500)
-- `confirmation`: VARCHAR(500)
-- `drive`: JSONB
-- `keywords`: JSONB
-- `revelation`: VARCHAR(500)
-- `ruling_planet`: VARCHAR(50)
-- `transitional_phase`: VARCHAR(50)
-- `attributes`: JSONB
-- `light_meanings`: JSONB
-- `shadow_meanings`: JSONB
-- `reversed_meaning`: VARCHAR(500)
+- `id`: Serial (Chave Primária)
+- `url_da_imagem`: VARCHAR(500)
+- `nome`: VARCHAR(255)
+- `descrição_curta`: VARCHAR(1000)
+- `descrição_longa`: VARCHAR(1000)
+- `zodíaco`: JSONB
+- `elemento`: VARCHAR(50)
+- `número_significado`: Serial
+- `significados`: JSONB
+- `conselho`: VARCHAR(500)
+- `pergunta`: VARCHAR(500)
+- `confirmação`: VARCHAR(500)
+- `determinação`: JSONB
+- `palavras_chave`: JSONB
+- `revelação`: VARCHAR(500)
+- `planeta_governante`: VARCHAR(50)
+- `árvore_da_vida`: VARCHAR(50)
+- `atributos`: JSONB
+- `significados_positivos`: JSONB
+- `significados_negativos`: JSONB
+- `significado_reverso`: VARCHAR(500)
 
-## API Endpoints 🛣️
+## Endpoints da API 🛣️
 
-### GET /cards
+### GET /api/cartas
 
-Fetches all tarot cards.
+Busca todas as cartas de tarô.
 
-### GET /cards/:id
+### GET /api/cartas/:id
 
-Fetches a single tarot card by ID.
+Busca uma única carta de tarô por ID.
 
-### POST /cards
+### POST /api/cartas
 
-Adds a new tarot card.
+Adiciona uma nova carta de tarô.
+
+Exemplo do corpo da solicitação:
 
 ```json
 {
-  "name": "The Fool",
-  "number_meaning": "0 as nothing and begin of it all",
-  "short_description": "The Fool is usually depicted as a beggar or a vagabond, wearing ragged clothes & stockings without shoes, and carries a stick on his back. He symbolizes true innocence, a perfect state of joy and freedom, the sure feeling to be one with the spirit of life at any time.",
-  "long_description": "The Fool is the symbol of true innocence, a perfect state of joy and freedom, the sure feeling to be one with the spirit of life, at any time.The Fool has the number 0, for someone ready to go in any direction, open to all possibilities.  He belongs nowhere, has no past, but an infinite future.  Every moment is a new beginning. In Arabic letters the 0 has the shape of an egg, the symbol for the origin of life.  The Fool is change, motion and the readiness to jump into life, with no cares ever.  The Fool knows no difference between possibility and reality, the zero means a total lack of hope and fear, the Fool suspects and plans nothing. He reacts directly to the current situation, nothing is calculated, nothing is hidden.In most decks the Fool is shown with an animal, as a symbol of nature, the animal soul in perfect harmony with the spirit that just follows its instincts.  The Fool is courage, optimism and the belief in life and himself.  When times are hard, and we suffer the pressure of ‘being reasonable’ or denying our instincts, the Fool reminds us that our inner person knows best what to do.In its negative aspect, the card can say that its qualities are blocked or reversed.  Irresponsibility, mad projects, recklessness – the careless human who covers himself with some artificial madness, for distrusting his instincts and fearing standstill and silence.Always trust your instincts",
-  "image_url": "https://res.cloudinary.com/dytiufsuu/image/upload/v1724869722/thot_tarot/00-The_Fool_fkip0b.jpg",
-  "ruling_planet": "Uranus",
-  "transitional_phase": "Pisces to Aries",
-  "attributes": [
-    "curiosity",
-    "spontaneity",
-    "madness"
-  ],
-  "element": "Air",
-  "light_meanings": [
-    "the positive break up of structures and limitations",
-    "selfless idealism",
-    "endless fantasy",
-    "optimism",
-    "trust to instincts",
-    "beginnings",
-    "innocence"
-  ],
-  "shadow_meanings": [
-    "the negative loss of structures",
-    "useless daydreaming",
-    "infantility"
-  ],
-  "reversed_meaning": "The Fool Reversed can show that you are taking too many risks and acting recklessly. In your attempt to live ‘in the moment’ and be spontaneous and adventurous, you may do so in total disregard of the consequences of your actions and engaging in activities that put both yourself and others at risk. Look at the bigger picture and consider how you can keep the free spirit of The Fool without harming others.",
-  "advice": "You are ready for a new start, perhaps for a quality change. Let yourself go, take a break even if fear tries to hold you back again and again. Trust the voice of your heart.",
-  "question": "What do you have to do to get rid of it? What is the role of the 'tiger of fear' in your life? How do you imagine the bold jump into something new? Where’s your heart calling?",
-  "confirmation": "Now I’m following my heart’s suggestions. I’m open and I’m going wherever you may lead me.",
-  "drive": [
-    "changes",
-    "movement",
-    "the innocence of a child",
-    "spontaneity",
-    "free spirit",
-    "]"
-  ],
-  "keywords": [
-    "openess",
-    "trust",
-    "risk-taking",
-    "loyalty to ourselves",
-    "freedom",
-    "independence",
-    "creativity",
-    "performance",
-    "leapfrogging",
-    "follow-up of the heart"
-  ],
-  "revelation": ""
-}
+        "nome": "O Louco",
+        "número_significado": "0 como nada e começo de tudo",
+        "descrição_curta": "O Louco geralmente é retratado como um mendigo ou um vagabundo, usa roupas e meias irregulares sem sapatos, e carrega um graveto nas costas. Ele simboliza a verdadeira inocência, um estado perfeito de alegria e liberdade, o sentimento seguro de ser um com o espírito da vida a qualquer momento.",
+        "descrição_longa": "O louco é o símbolo da verdadeira inocência, um estado perfeito de alegria e liberdade, a sensação de ser um com o espírito da vida, a qualquer momento. O louco tem o número 0, para alguém pronto para ir em qualquer direção, aberto para todas as possibilidades.Ele não pertence a algum lugar, não tem passado, mas um futuro infinito.Cada momento é um novo começo.Nas letras árabes, o 0 tem a forma de um ovo, o símbolo da origem da vida.O louco é a mudança, o movimento e a prontidão para pular para a vida, sem cuidados nunca.O louco não conhece a diferença entre possibilidade e realidade, o zero significa uma total falta de esperança e medo, o louco suspeita e não planeja nada.Ele reage diretamente à situação atual, nada é calculado, nada está oculto. Na maioria dos baralhos, o louco é mostrado com um animal, como um símbolo da natureza, a alma animal em perfeita harmonia com o espírito que apenas segue seus instintos.O louco é coragem, otimismo e crença na vida e em si mesmo.Quando os tempos são difíceis e sofremos a pressão de 'ser razoável' ou negar nossos instintos, o que nos lembra que nossa pessoa interior sabe melhor o que fazer. Em seu aspecto negativo, o cartão pode dizer que suas qualidades estão bloqueadas ou revertidas.Irresponsabilidade, projetos loucos, imprudência - o humano descuidado que se cobre com alguma loucura artificial, por desconfiar de seus instintos e temer parada e silêncio. Além disso, confie em seus instintos",
+        "url_da_imagem": "https://res.cloudinary.com/dytiufsuu/image/upload/v1724869722/thot_tarot/00-The_Fool_fkip0b.jpg",
+        "planeta_governante": "Urano / Mercúrio",
+        "zodíaco": "Peixes/Áries",
+        "árvore_da_vida": "Kether vai para Chokmah",
+        "atributos": [
+            "curiosidade",
+            "espontaneidade",
+            "loucura"
+        ],
+        "elemento": "Ar",
+        "significados_positivos": [
+            "o rompimento positivo de estruturas e limitações",
+            "idealismo altruísta",
+            "fantasia sem fim",
+            "otimismo",
+            "Confie em instintos",
+            "começo",
+            "inocência"
+        ],
+        "significados_negativos": [
+            "perda negativa de estruturas",
+            "acordo inútil",
+            "infantilidade"
+        ],
+        "significado_reverso": "O louco revertido pode mostrar que você está assumindo muitos riscos e satisfeito de forma imprudente.Na sua tentativa de viver 'no momento' e ser espontâneo e aventureiro, você pode fazê-lo em total desrespeito às consequências de suas ações e se envolver em atividades que coloca você e outras pessoas em risco.Olhe para o quadro geral e considere como você pode manter o espírito livre do louco sem deficiências os outros.",
+        "conselho": "Você está pronto para um novo começo, talvez para uma mudança de qualidade.Deixe -se ir, faça uma pausa, mesmo que o medo tente segurá -lo de novo e de novo.Confie na voz do seu coração.",
+        "pergunta": "O que você precisa fazer para se livrar disso?Qual é o papel do 'tigre do medo' em sua vida?Como você imagina o salto ousado para algo novo?Onde está seu coração chamado?",
+        "confirmação": "Agora estou apoiando as sugestões do meu coração. Estou aberto e vou para onde você pode me levar.",
+        "determinação": [
+            "mudanças",
+            "movimento",
+            "a inocência de uma criança",
+            "espontaneidade",
+            "Espírito Livre",
+            null
+        ],
+        "palavras_chave": [
+            "abertura",
+            "confiar",
+            "assumir riscos",
+            "lealdade a nós mesmos",
+            "liberdade",
+            "independência",
+            "criatividade",
+            "desempenho",
+            "salto",
+            "Acompanhamento do coração"
+        ],
+        "revelação": null
+    }
 ```
 
-## PUT /cards/
+## PUT /api/cartas/:id
 
-Updates an existing tarot card.
+Atualiza uma carta de tarô existente.
 
-## DELETE /cards/
+## DELETE /api/cartas/:id
 
-Deletes a tarot card.
+Exclui uma carta de tarô.
 
-## POST /cards/bulk
+## POST /api/cartas/muitas
 
-Bulk inserts multiple tarot cards.
+Insere várias cartas de tarô de uma vez.
 
-Request body example:
+Exemplo do corpo da solicitação:
 
 ```json
 [
   {
-    "name": "The Fool",
-    "description": "...",
-    "ruling_planet": "Uranus",
-    "transitional_phase": "Pisces to Aries",
-    "attributes": ["curiosity", "spontaneity", "adventure"],
-    "...."
+     {
+        "nome": "O Louco",
+        "número_significado": "0 como nada e começo de tudo",
+        "descrição_curta": "O Louco geralmente é retratado como um mendigo ou um vagabundo, usa roupas e meias irregulares sem sapatos, e carrega um graveto nas costas. Ele simboliza a verdadeira inocência, um estado perfeito de alegria e liberdade, o sentimento seguro de ser um com o espírito da vida a qualquer momento.",
+        "url_da_imagem": "https://res.cloudinary.com/dytiufsuu/image/upload/v1724869722/thot_tarot/00-The_Fool_fkip0b.jpg",
+         "elemento": "Ar",
+        "significados_positivos": [
+            "o rompimento positivo de estruturas e limitações",
+            "idealismo altruísta",
+            "fantasia sem fim",
+            "otimismo",
+            "Confie em instintos",
+            "começo",
+            "inocência"
+        ],
+      "...."
   },
-  {
-    "name": "The Magician",
-    "description": "...",
-    "ruling_planet": "Mercury",
-    "transitional_phase": "Aries to Taurus",
-    "attributes": ["manifestation", "resourcefulness", "power"],
-   "...."
-  }
+   {
+      "nome": "O Mago",
+      "número_significado": "1 como símbolo para a unidade (masculino)",
+      "descrição_curta": "O mágico simboliza a ilusão, a habilidade, a autoconsciência e um estilo de vida ativo.",      
+      "url_daimagem": "https://res.cloudinary.com/dytiufsuu/image/upload/v1724869725/thot_tarot/01-TheMagus_iud8e8.jpg",        
+      "significados_positivos": [
+         "Atividade",
+         "poder da vida",
+         "impulso",
+         "energia",
+         "Manifestação",
+         "desenvoltura"
+      ],
+      "..."       
+   }
+  
 ]
 ```
 
-Request body example:
+## Tratamento de erros ⚠️
 
-## Error Handling ⚠️
+A API usa códigos de status HTTP padrão para respostas de erro:
 
-The API uses standard HTTP status codes for error responses:
+- 400: Solicitação inválida
+- 404: Não encontrado
+- 500: Erro interno do servidor
 
-- 400: Bad Request
-- 404: Not Found
-- 500: Internal Server Error
+As mensagens de erro incluem um JSON body com um campo da `mensagem` descrevendo o erro.
 
-Error responses will include a JSON body with a `message` field describing the error.
+## Contribua! 🤝
 
-## Contributing 🤝
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contribuições são bem-vindas! Sinta-se à vontade para enviar uma solicitação de pull.
