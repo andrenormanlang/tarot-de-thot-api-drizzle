@@ -1,0 +1,146 @@
+{
+  "id": "dc124c14-3d08-4389-8878-d64c796cc418",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.tarot_de_thot": {
+      "name": "tarot_de_thot",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "número_significado": {
+          "name": "número_significado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descrição_curta": {
+          "name": "descrição_curta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descrição_longa": {
+          "name": "descrição_longa",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "URL_da_imagem": {
+          "name": "URL_da_imagem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "planeta_governante": {
+          "name": "planeta_governante",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zodíaco": {
+          "name": "zodíaco",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "árvore_da_vida": {
+          "name": "árvore_da_vida",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "atributos": {
+          "name": "atributos",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "elemento": {
+          "name": "elemento",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "significados_positivos": {
+          "name": "significados_positivos",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "significados_negativos": {
+          "name": "significados_negativos",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "significado_reverso": {
+          "name": "significado_reverso",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "conselho": {
+          "name": "conselho",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pergunta": {
+          "name": "pergunta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "confirmação": {
+          "name": "confirmação",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "determinação": {
+          "name": "determinação",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palavras_chave": {
+          "name": "palavras_chave",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "revelação": {
+          "name": "revelação",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
