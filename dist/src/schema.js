@@ -8,7 +8,7 @@ exports.cartasTarot = (0, pg_core_1.pgTable)('tarot_de_thot', {
     número_significado: (0, pg_core_1.text)('número_significado').notNull(),
     descrição_curta: (0, pg_core_1.text)('descrição_curta').notNull(),
     descrição_longa: (0, pg_core_1.text)('descrição_longa'),
-    URL_da_imagem: (0, pg_core_1.text)('URL_da_imagem'),
+    url_da_imagem: (0, pg_core_1.text)('url_da_imagem'),
     planeta_governante: (0, pg_core_1.text)('planeta_governante'),
     zodíaco: (0, pg_core_1.text)('zodíaco'),
     árvore_da_vida: (0, pg_core_1.text)('árvore_da_vida'),
