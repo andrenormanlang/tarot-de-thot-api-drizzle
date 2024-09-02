@@ -95,6 +95,46 @@ router.get("/cartas", async (_req, res) => {
       res.status(500).json({ message: "Problema com servidor" });
     }
   });
+
+   /**
+   * Atualize várias cartas de uma vez
+   */
+/**
+ * Pegue todas as cartas
+ */
+router.put("/cartas/muitas", async (req, res) => {
+  try {
+    if (!Array.isArray(req.body)) {
+      return res.status(400).json({ message: "O corpo da solicitação deve ser um 'array' de cartas" });
+    }
+    
+    const results = [];
+    for (const carta of req.body) {
+      const { id, ...updateData } = carta;
+      console.log("Atualizando carta ID:", id);  // Adicionado para verificar o valor do ID
+      console.log("Dados para atualização:", updateData);  // Adicionado para verificar os dados de atualização
+
+      if (!id) {
+        return res.status(400).json({ message: "Cada carta deve ter um ID para ser atualizada" });
+      }
+      const cartaEditada = await db
+        .update(cartasTarot)
+        .set(updateData)
+        .where(eq(cartasTarot.id, id))
+        .returning();
+      if (cartaEditada.length === 0) {
+        return res.status(404).json({ message: `Carta com ID ${id} não encontrada` });
+      }
+      results.push(cartaEditada[0]);
+    }
+
+    res.json(results);
+  } catch (error) {
+    console.error("Erro ao atualizar várias cartas:", error);
+    res.status(500).json({ message: "Problema com servidor" });
+  }
+});
+
   
   /**
    * Deletar uma carta por ID
